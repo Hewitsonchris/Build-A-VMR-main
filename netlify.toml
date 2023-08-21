@@ -1,0 +1,20 @@
+# starting for FF79, these headers let us use higher-res timers (i.e. < 1ms resolution)
+# See https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
+# and https://docs.netlify.com/routing/headers/#syntax-for-the-headers-file for 
+# netlify-specific details
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Embedder-Policy = "require-corp"
+
+# https://docs.netlify.com/configure-builds/file-based-configuration/#sample-file
+[build]
+  base = "."
+  publish = "public/"
+  command = "npm run prod"
+  functions = "netlify_functions/"
+
+[build.environment]
+  TZ='America/New_York'
